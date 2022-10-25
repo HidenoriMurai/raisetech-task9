@@ -23,18 +23,16 @@ public class UserController {
         return userService.findAll().stream().map(UserResponse::new).toList();
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/users/{id}")
     public List<UserResponse> getUserOne(@PathVariable("id") int id) {
 
         return userService.findById(id).stream().map(UserResponse::new).toList();
     }
 
 
-    @GetMapping("/user")
+    @GetMapping("/users/{age}")
     public List<UserResponse> getUsers(@RequestParam("age") int age) {
 
         return userService.findByAge(age).stream().map(UserResponse::new).toList();
     }
 }
-
-
