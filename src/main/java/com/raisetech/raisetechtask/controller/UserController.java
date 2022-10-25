@@ -1,9 +1,11 @@
 package com.raisetech.raisetechtask.controller;
 
+import com.raisetech.raisetechtask.entity.User;
 import com.raisetech.raisetechtask.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -24,12 +26,11 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public List<UserResponse> getUserOne(@PathVariable("id") int id) {
+    public Optional<User> getUserOne(@PathVariable("id") int id) {
 
-        return userService.findById(id).stream().map(UserResponse::new).toList();
+        return userService.findById(id);
     }
-
-
+    
     @GetMapping
     public List<UserResponse> getUsers(@RequestParam("age") int age) {
 

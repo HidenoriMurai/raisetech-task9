@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface UserMapper {
@@ -13,7 +14,7 @@ public interface UserMapper {
     List<User> findAll();
 
     @Select("SELECT * FROM names WHERE id = #{id}")
-    List<User> findById(int id);
+    Optional<User> findById(int id);
 
     @Select("SELECT * FROM names WHERE age = #{age}")
     List<User> findByAge(int age);

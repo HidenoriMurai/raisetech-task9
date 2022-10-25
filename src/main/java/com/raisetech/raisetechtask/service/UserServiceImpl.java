@@ -5,6 +5,7 @@ import com.raisetech.raisetechtask.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -17,7 +18,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findById(int id) {
+    public Optional<User> findById(int id) {
         return userMapper.findById(id);
     }
 
