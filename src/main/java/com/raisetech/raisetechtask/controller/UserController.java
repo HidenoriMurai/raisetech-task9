@@ -19,7 +19,7 @@ public class UserController {
     }
 
     //ユーザー情報一覧
-    @GetMapping("/")
+    @GetMapping()
     public List<UserResponse> getAll() {
 
         return userService.findAll().stream().map(UserResponse::new).toList();
@@ -30,8 +30,8 @@ public class UserController {
 
         return userService.findById(id);
     }
-    
-    @GetMapping
+
+    @GetMapping("/search")
     public List<UserResponse> getUsers(@RequestParam("age") int age) {
 
         return userService.findByAge(age).stream().map(UserResponse::new).toList();
