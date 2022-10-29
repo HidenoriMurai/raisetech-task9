@@ -9,7 +9,5 @@ public interface UserService {
 
     Optional<User> findById(int id);
 
-    List<User> findAll();
-
-    List<User> findByAge(int age);
+    List<User> findByUser(Integer age);
 }

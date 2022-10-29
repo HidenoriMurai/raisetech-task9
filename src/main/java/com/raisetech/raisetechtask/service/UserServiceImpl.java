@@ -23,12 +23,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAll() {
-        return userMapper.findAll();
-    }
-
-    @Override
-    public List<User> findByAge(int age) {
-        return userMapper.findByAge(age);
+    public List<User> findByUser(Integer age) {
+        if (age == null) {
+            return userMapper.findAll();
+        } else {
+            return userMapper.findByAge(age);
+        }
     }
 }
