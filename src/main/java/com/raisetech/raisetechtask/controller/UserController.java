@@ -1,12 +1,16 @@
 package com.raisetech.raisetechtask.controller;
 
+import com.raisetech.raisetechtask.entity.User;
 import com.raisetech.raisetechtask.service.UserService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/users")
 public class UserController {
 
     //ユーザー情報サービス
@@ -17,22 +21,15 @@ public class UserController {
     }
 
     //ユーザー情報一覧
-    @GetMapping("/")
-    public List<UserResponse> getAll() {
+    @GetMapping("/users/{id}")
+    public Optional<User> getUserOne(@PathVariable("id") int id) {
 
-        return userService.findAll().stream().map(UserResponse::new).toList();
+        return userService.findById(id);
     }
 
-    @GetMapping("/{id}")
-    public List<UserResponse> getUserOne(@PathVariable("id") int id) {
+    @GetMapping("/users")
+    public List<UserResponse> getUsers(@RequestParam(name = "age", required = false) Integer age) {
 
-        return userService.findById(id).stream().map(UserResponse::new).toList();
-    }
-
-
-    @GetMapping
-    public List<UserResponse> getUsers(@RequestParam("age") int age) {
-
-        return userService.findByAge(age).stream().map(UserResponse::new).toList();
+        return userService.findByUser(age).stream().map(UserResponse::new).toList();
     }
 }
