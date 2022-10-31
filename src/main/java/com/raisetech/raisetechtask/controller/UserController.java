@@ -21,7 +21,7 @@ public class UserController {
     }
 
     //ユーザー情報一覧
-    @GetMapping("/{id}")
+    @GetMapping("/users/{id}")
     public Optional<User> getUserOne(@PathVariable("id") int id) {
 
         return userService.findById(id);
