@@ -1,6 +1,7 @@
 package com.raisetech.raisetechtask.service;
 
 import com.raisetech.raisetechtask.entity.User;
+import com.raisetech.raisetechtask.exception.ResourceNotFoundException;
 import com.raisetech.raisetechtask.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<User> findById(int id) {
-        return userMapper.findById(id);
+        Optional<User> user = this.userMapper.findById(id);
+        if (user.isPresent()) {
+            return userMapper.findById(id);
+        } else {
+            throw new ResourceNotFoundException("resource not found");
+        }
     }
 
     @Override
