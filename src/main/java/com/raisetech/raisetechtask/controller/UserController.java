@@ -5,6 +5,7 @@ import com.raisetech.raisetechtask.exception.ResourceNotFoundException;
 import com.raisetech.raisetechtask.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,19 +51,19 @@ public class UserController {
     }
 
     @PostMapping("/users/create")
-    public Map<String, String> createUser(@RequestBody User user) {
+    public Map<String, String> createUser(@Validated @RequestBody User user) {
         userService.createByUser(user);
         return Map.of("message", "user successfully created");
     }
 
     @DeleteMapping("/users/delete/{id}")
-    public Map<String, String> deleteUser(@PathVariable("id") int id) {
+    public Map<String, String> deleteUser(@Validated @PathVariable("id") int id) {
         userService.deleteByUser(id);
         return Map.of("message", "user successfully deleted");
     }
 
     @PatchMapping("/users/update/{id}")
-    public Map<String, String> updateUser(@PathVariable("id") int id, @RequestBody User user) {
+    public Map<String, String> updateUser(@Validated @PathVariable("id") int id, @RequestBody User user) {
         userService.updateByUser(user);
         return Map.of("message", "user successfully updated");
     }
