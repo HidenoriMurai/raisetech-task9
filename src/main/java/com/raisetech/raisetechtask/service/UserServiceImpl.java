@@ -30,4 +30,19 @@ public class UserServiceImpl implements UserService {
             return userMapper.findByAge(age);
         }
     }
+
+    @Override
+    public void createByUser(User user) {
+        userMapper.createUser(user);
+    }
+
+    @Override
+    public void deleteByUser(int id) {
+        userMapper.deleteUserId(id);
+    }
+
+    @Override
+    public void updateByUser(User user) {
+        userMapper.updateUser(user);
+    }
 }
