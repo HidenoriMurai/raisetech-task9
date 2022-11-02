@@ -31,7 +31,7 @@ public class UserController {
     @GetMapping("/users")
     public List<UserResponse> getUsers(@RequestParam(name = "age", required = false) Integer age) {
 
-        return userService.findByUser(age).stream().map(UserResponse::new).toList();
+        return userService.findByAge(age).stream().map(UserResponse::new).toList();
     }
 
     @PostMapping("/users/")
