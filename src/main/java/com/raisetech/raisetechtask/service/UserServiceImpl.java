@@ -2,6 +2,7 @@ package com.raisetech.raisetechtask.service;
 
 import com.raisetech.raisetechtask.entity.User;
 import com.raisetech.raisetechtask.exception.ResourceNotFoundException;
+import com.raisetech.raisetechtask.form.CreateForm;
 import com.raisetech.raisetechtask.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 
@@ -43,8 +44,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createByUser(User user) {
-        userMapper.createUser(user);
+    public void createByUser(CreateForm form) {
+        userMapper.createUser(form);
     }
 
     @Override

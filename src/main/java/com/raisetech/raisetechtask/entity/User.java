@@ -15,7 +15,6 @@ public class User {
     @NotBlank
     private String name;
     @Range(min = 1, max = 130)
-    @NotBlank
     private Integer age;
 
     public User(int id, String name, Integer age) {

@@ -1,6 +1,7 @@
 package com.raisetech.raisetechtask.mapper;
 
 import com.raisetech.raisetechtask.entity.User;
+import com.raisetech.raisetechtask.form.CreateForm;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public interface UserMapper {
     List<User> findByAge(Integer age);
 
     @Insert("INSERT INTO names (name, age) values (#{name}, #{age})")
-    void createUser(User user);
+    void createUser(CreateForm form);
 
     @Delete("DELETE FROM names where id = #{id}")
     void deleteUserId(int id);

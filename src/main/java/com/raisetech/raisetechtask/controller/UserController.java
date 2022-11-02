@@ -1,6 +1,7 @@
 package com.raisetech.raisetechtask.controller;
 
 import com.raisetech.raisetechtask.entity.User;
+import com.raisetech.raisetechtask.form.CreateForm;
 import com.raisetech.raisetechtask.service.UserService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +35,8 @@ public class UserController {
     }
 
     @PostMapping("/users/create")
-    public Map<String, String> createUser(@Validated @RequestBody User user) {
-        userService.createByUser(user);
+    public Map<String, String> createUser(@Validated @RequestBody CreateForm form) {
+        userService.createByUser(form);
         return Map.of("message", "user successfully created");
     }
 

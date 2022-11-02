@@ -1,6 +1,7 @@
 package com.raisetech.raisetechtask.service;
 
 import com.raisetech.raisetechtask.entity.User;
+import com.raisetech.raisetechtask.form.CreateForm;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,7 +12,8 @@ public interface UserService {
 
     List<User> findByUser(Integer age);
 
-    void createByUser(User user);
+
+    void createByUser(CreateForm form);
 
     void deleteByUser(int id);
 
