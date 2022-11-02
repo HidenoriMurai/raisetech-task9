@@ -34,19 +34,19 @@ public class UserController {
         return userService.findByUser(age).stream().map(UserResponse::new).toList();
     }
 
-    @PostMapping("/users/create")
+    @PostMapping("/users/")
     public Map<String, String> createUser(@Validated @RequestBody CreateForm form) {
         userService.createByUser(form);
         return Map.of("message", "user successfully created");
     }
 
-    @DeleteMapping("/users/delete/{id}")
+    @DeleteMapping("/users/{id}")
     public Map<String, String> deleteUser(@Validated @PathVariable("id") int id) {
         userService.deleteByUser(id);
         return Map.of("message", "user successfully deleted");
     }
 
-    @PatchMapping("/users/update/{id}")
+    @PatchMapping("/users/{id}")
     public Map<String, String> updateUser(@Validated @PathVariable("id") int id, @RequestBody User user) {
         userService.updateByUser(user);
         return Map.of("message", "user successfully updated");
