@@ -18,6 +18,7 @@ public class UserServiceImpl implements UserService {
         this.userMapper = userMapper;
     }
 
+    //IDが存在するかしないか。
     @Override
     public Optional<User> findById(int id) {
         Optional<User> user = this.userMapper.findById(id);
@@ -28,10 +29,14 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    //Param:ageの有無で全件取得or年齢指定検索→→→存在しない年齢が指定された場合ResourceNotFoundException
     @Override
     public List<User> findByUser(Integer age) {
+        List<User> user = this.userMapper.findByAge(age);
         if (age == null) {
             return userMapper.findAll();
+        } else if (user.isEmpty()) {
+            throw new ResourceNotFoundException("resource not found");
         } else {
             return userMapper.findByAge(age);
         }
