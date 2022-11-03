@@ -1,6 +1,8 @@
 package com.raisetech.raisetechtask.service;
 
 import com.raisetech.raisetechtask.entity.User;
+import com.raisetech.raisetechtask.exception.ResourceNotFoundException;
+import com.raisetech.raisetechtask.form.CreateForm;
 import com.raisetech.raisetechtask.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 
@@ -17,17 +19,39 @@ public class UserServiceImpl implements UserService {
         this.userMapper = userMapper;
     }
 
+    //IDが存在するかしないか。
     @Override
-    public Optional<User> findById(int id) {
-        return userMapper.findById(id);
+    public User findById(int id) {
+        Optional<User> user = userMapper.findById(id);
+        if (user.isPresent()) {
+            return user.get();
+        } else {
+            throw new ResourceNotFoundException("resource not found");
+        }
     }
 
+    //Param:ageの有無で全件取得or年齢指定検索→→→存在しない年齢が指定された場合ResourceNotFoundException
     @Override
-    public List<User> findByUser(Integer age) {
+    public List<User> findByAge(Integer age) {
         if (age == null) {
             return userMapper.findAll();
         } else {
             return userMapper.findByAge(age);
         }
+    }
+
+    @Override
+    public void createByUser(CreateForm form) {
+        userMapper.createUser(form);
+    }
+
+    @Override
+    public void deleteByUser(int id) {
+        userMapper.deleteUserId(id);
+    }
+
+    @Override
+    public void updateByUser(User user) {
+        userMapper.updateUser(user);
     }
 }
