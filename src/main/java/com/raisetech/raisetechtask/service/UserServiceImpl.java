@@ -21,10 +21,10 @@ public class UserServiceImpl implements UserService {
 
     //IDが存在するかしないか。
     @Override
-    public Optional<User> findById(int id) {
-        Optional<User> user = this.userMapper.findById(id);
+    public User findById(int id) {
+        Optional<User> user = userMapper.findById(id);
         if (user.isPresent()) {
-            return userMapper.findById(id);
+            return user.get();
         } else {
             throw new ResourceNotFoundException("resource not found");
         }

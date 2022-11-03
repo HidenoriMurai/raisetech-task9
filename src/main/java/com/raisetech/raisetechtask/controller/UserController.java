@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -23,7 +22,7 @@ public class UserController {
 
     //ユーザー情報一覧
     @GetMapping("/users/{id}")
-    public Optional<User> getUserOne(@PathVariable("id") int id) {
+    public User getUserOne(@PathVariable("id") int id) {
 
         return userService.findById(id);
     }
