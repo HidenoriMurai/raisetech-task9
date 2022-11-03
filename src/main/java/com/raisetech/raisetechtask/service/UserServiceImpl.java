@@ -33,11 +33,8 @@ public class UserServiceImpl implements UserService {
     //Param:ageの有無で全件取得or年齢指定検索→→→存在しない年齢が指定された場合ResourceNotFoundException
     @Override
     public List<User> findByAge(Integer age) {
-        List<User> user = this.userMapper.findByAge(age);
         if (age == null) {
             return userMapper.findAll();
-        } else if (user.isEmpty()) {
-            throw new ResourceNotFoundException("resource not found");
         } else {
             return userMapper.findByAge(age);
         }
